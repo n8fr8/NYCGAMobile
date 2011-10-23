@@ -1,4 +1,5 @@
 <?php include("inc/main.inc"); ?>
+<?php include("inc/header.inc"); ?>
 <?php
 
   $doc = new DOMDocument();
@@ -6,20 +7,6 @@
 
 
 ?>
-<!DOCTYPE html> 
-<html> 
-
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<title>nycga</title> 
-	<link rel="stylesheet" href="nycga.css" />
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
-	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>
-</head> 
-
-<body> 
 <div data-role="page" id="home" data-add-back-btn="true">
 	<div data-role="header"> 
 	<h1>Upcoming Events</h1>
@@ -31,6 +18,7 @@ $count = 0;
 $postTitle = $node->getElementsByTagName('title')->item(0)->nodeValue;
 $postLink = $node->getElementsByTagName('link')->item(0)->nodeValue;
 $postDesc = $node->getElementsByTagName('description')->item(0)->nodeValue;
+$postDesc = ereg_replace("[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]","content.php?page=\\0", $postDesc);
  ?>
 <div data-role="collapsible" data-theme="e" data-content-theme="c">
 <h3><? echo $postTitle; ?></h3>
